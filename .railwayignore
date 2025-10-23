@@ -1,9 +1,11 @@
-# Ignore frontend files for Railway deployment
+# Ignore everything except backend
 frontend/
 start.sh
 README.md
 AI_INTEGRATION.md
 DEPLOYMENT.md
+.gitignore
+package.json
 
 # Only deploy backend
 !backend/
