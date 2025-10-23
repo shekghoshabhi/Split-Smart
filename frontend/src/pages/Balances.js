@@ -73,7 +73,7 @@ const Balances = () => {
     setMessageType('');
 
     try {
-      const response = await axios.post(API_BASE_URL + '/api/groups/' + groupId + '/settle', {
+      await axios.post(API_BASE_URL + '/api/groups/' + groupId + '/settle', {
         from,
         to,
         amount
