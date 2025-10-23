@@ -149,7 +149,7 @@ const Home = () => {
 
   const handleCreateUser = async (userData) => {
     try {
-      const response = await axios.post(API_BASE_URL + '/api/users', userData);
+      await axios.post(API_BASE_URL + '/api/users', userData);
       showSnackbar(`User "${userData.name}" created successfully!`);
       setShowCreateUser(false);
       await fetchData(); // Wait for data refresh
