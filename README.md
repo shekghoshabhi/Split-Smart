@@ -1,8 +1,12 @@
 # Split Smart
 
 **Live App**: [https://smart-split-ai.netlify.app](https://smart-split-ai.netlify.app)  
-**Demo Video**: [Watch the app in action](https://www.loom.com/share/46069ccfc2f744a284f80125f8b5f089?sid=64313ea9-0c28-4061-bc13-5ed88d09ff99)  
 **API**: [https://split-smart-production.up.railway.app](https://split-smart-production.up.railway.app)
+
+
+**Demo Video**:
+
+https://www.loom.com/share/46069ccfc2f744a284f80125f8b5f089?sid=64313ea9-0c28-4061-bc13-5ed88d09ff99
 
 A modern expense splitting app that makes splitting bills with friends effortless. Built with Node.js and React, featuring AI-powered insights to help you understand your spending patterns.
 
@@ -353,10 +357,3 @@ Having issues?
 =======
 
 
-
-## 🔗 Live Demo
-
-https://www.loom.com/share/46069ccfc2f744a284f80125f8b5f089?sid=64313ea9-0c28-4061-bc13-5ed88d09ff99
-
-
->>>>>>> f3205b2454ecf27e50db47fd5b0a47e047d36919
