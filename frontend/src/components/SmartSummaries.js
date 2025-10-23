@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 import {
   Dialog,
   DialogTitle,
@@ -55,7 +56,7 @@ const SmartSummaries = ({ groupId, groupName, onClose }) => {
     setSummary('');
 
     try {
-      const response = await axios.post(`/api/groups/${groupId}/summaries`, {
+      const response = await axios.post(API_BASE_URL + '/api/groups/' + groupId + '/summaries', {
         query: queryText
       });
 

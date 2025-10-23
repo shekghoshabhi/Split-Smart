@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 import {
   Dialog,
   DialogTitle,
@@ -185,7 +186,7 @@ const AddExpenseModal = ({ groupId, members, onClose, onExpenseAdded }) => {
         splitDetails: formData.splitType === 'percentage' ? splitPercentages : splitDetails
       };
 
-      await axios.post(`/api/groups/${groupId}/expenses`, expenseData);
+      await axios.post(API_BASE_URL + '/api/groups/' + groupId + '/expenses', expenseData);
       showSnackbar('Expense added successfully!');
       onExpenseAdded();
       onClose();

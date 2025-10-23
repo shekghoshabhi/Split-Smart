@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 import {
   Dialog,
   DialogTitle,
@@ -181,7 +182,7 @@ const EditExpenseModal = ({ groupId, expenseId, expense, members, onClose, onExp
         }));
       }
 
-      await axios.put(`/api/groups/${groupId}/expenses/${expenseId}`, {
+      await axios.put(API_BASE_URL + '/api/groups/' + groupId + '/expenses/' + expenseId, {
         paidBy: formData.paidBy,
         amount: parseFloat(formData.amount),
         description: formData.description,
