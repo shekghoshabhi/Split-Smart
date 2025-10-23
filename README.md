@@ -325,6 +325,7 @@ The frontend is deployed on Netlify with automatic builds from GitHub. The build
 
 ## Known Issues
 
+<<<<<<< HEAD
 - The AI features might be rate-limited if you hit the OpenAI API too hard
 - Large groups with many expenses might take a moment to load balances
 - The app works best with groups of 2-10 people (though it supports more)
@@ -349,3 +350,13 @@ Having issues?
 - Check the API documentation above
 - Look at the setup instructions
 - Create an issue on GitHub if you're still stuck
+=======
+
+
+
+## 🔗 Live Demo
+
+https://www.loom.com/share/46069ccfc2f744a284f80125f8b5f089?sid=64313ea9-0c28-4061-bc13-5ed88d09ff99
+
+
+>>>>>>> f3205b2454ecf27e50db47fd5b0a47e047d36919
