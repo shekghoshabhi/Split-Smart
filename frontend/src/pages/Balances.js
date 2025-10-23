@@ -40,8 +40,8 @@ const Balances = () => {
   const fetchData = async () => {
     try {
       const [balancesResponse, usersResponse] = await Promise.all([
-        axios.get(`${API_BASE_URL}/api/groups/${groupId}/balances`),
-        axios.get(`${API_BASE_URL}/api/users')
+        axios.get(API_BASE_URL + '/api/groups/' + groupId + '/balances'),
+        axios.get(API_BASE_URL + '/api/users')
       ]);
       
       const balances = balancesResponse.data.data?.balances || balancesResponse.data.balances || [];
@@ -63,11 +63,11 @@ const Balances = () => {
   };
 
   const handleSettle = async (from, to, amount) => {
-    const key = `${from}-${to}`;
+    const key = from + '-' + to;
     setSettling(prev => ({ ...prev, [key]: true }));
 
     try {
-      await axios.post(`${API_BASE_URL}/api/groups/${groupId}/settle`, {
+      await axios.post(API_BASE_URL + '/api/groups/' + groupId + '/settle', {
         from,
         to,
         amount

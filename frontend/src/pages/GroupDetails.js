@@ -66,8 +66,8 @@ const GroupDetails = () => {
   const fetchGroupDetails = async () => {
     try {
       const [groupResponse, usersResponse] = await Promise.all([
-        axios.get(`${API_BASE_URL}/api/groups/${groupId}`),
-        axios.get(`${API_BASE_URL}/api/users')
+        axios.get(API_BASE_URL + '/api/groups/' + groupId),
+        axios.get(API_BASE_URL + '/api/users')
       ]);
       
       const group = groupResponse.data.data || groupResponse.data;
@@ -114,7 +114,7 @@ const GroupDetails = () => {
     if (!deletingExpense) return;
 
     try {
-      await axios.delete(`${API_BASE_URL}/api/groups/${groupId}/expenses/${deletingExpense.expenseId}`);
+      await axios.delete(API_BASE_URL + '/api/groups/' + groupId + '/expenses/' + deletingExpense.expenseId);
       fetchGroupDetails();
       setShowDeleteDialog(false);
       setDeletingExpense(null);

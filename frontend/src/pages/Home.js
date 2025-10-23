@@ -56,8 +56,8 @@ const Home = () => {
   const fetchData = async () => {
     try {
       const [usersResponse, groupsResponse] = await Promise.all([
-        axios.get(`${API_BASE_URL}/api/users`),
-        axios.get(`${API_BASE_URL}/api/groups`)
+        axios.get(API_BASE_URL + '/api/users'),
+        axios.get(API_BASE_URL + '/api/groups')
       ]);
       
       const users = usersResponse.data.data || usersResponse.data || [];
@@ -73,10 +73,10 @@ const Home = () => {
       // Fetch expenses for each group
       const expensePromises = groups.map(async (group) => {
         try {
-          const expensesResponse = await axios.get(`${API_BASE_URL}/api/groups/${group.groupId}/expenses`);
+          const expensesResponse = await axios.get(API_BASE_URL + '/api/groups/' + group.groupId + '/expenses');
           return expensesResponse.data.data || expensesResponse.data;
         } catch (error) {
-          console.error(`Error fetching expenses for group ${group.groupId}:`, error);
+          console.error('Error fetching expenses for group ' + group.groupId + ':', error);
           return [];
         }
       });
@@ -137,7 +137,7 @@ const Home = () => {
 
   const handleCreateGroup = async (groupData) => {
     try {
-      await axios.post(`${API_BASE_URL}/api/groups`, groupData);
+      await axios.post(API_BASE_URL + '/api/groups', groupData);
       showSnackbar(`Group "${groupData.name}" created successfully!`);
       setShowCreateGroup(false);
       setParticipants([]);
@@ -149,7 +149,7 @@ const Home = () => {
 
   const handleCreateUser = async (userData) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/users`, userData);
+      const response = await axios.post(API_BASE_URL + '/api/users', userData);
       showSnackbar(`User "${userData.name}" created successfully!`);
       setShowCreateUser(false);
       await fetchData(); // Wait for data refresh
