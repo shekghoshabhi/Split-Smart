@@ -19,6 +19,7 @@ import {
   CircularProgress,
   Chip,
   Avatar,
+  Alert
 } from '@mui/material';
 import {
   AccountBalance as BalanceIcon,
@@ -32,6 +33,9 @@ const Balances = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [settling, setSettling] = useState({});
+  const [settledBalances, setSettledBalances] = useState(new Set());
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState('');
 
   const fetchData = useCallback(async () => {
     try {
@@ -65,17 +69,32 @@ const Balances = () => {
   const handleSettle = async (from, to, amount) => {
     const key = from + '-' + to;
     setSettling(prev => ({ ...prev, [key]: true }));
+    setMessage('');
+    setMessageType('');
 
     try {
-      await axios.post(API_BASE_URL + '/api/groups/' + groupId + '/settle', {
+      const response = await axios.post(API_BASE_URL + '/api/groups/' + groupId + '/settle', {
         from,
         to,
         amount
       });
-      fetchData(); // Refresh balances after settlement
+      
+      // Mark as settled in UI
+      setSettledBalances(prev => new Set([...prev, key]));
+      
+      // Show success message
+      setMessage(`Balance settled successfully! ${getUserName(from)} paid ₹${amount.toFixed(2)} to ${getUserName(to)}`);
+      setMessageType('success');
+      
+      // Refresh balances after a short delay to show the settled status
+      setTimeout(() => {
+        fetchData();
+      }, 1000);
+      
     } catch (error) {
       console.error('Error settling balance:', error);
-      alert('Error settling balance');
+      setMessage(error.response?.data?.error || 'Error settling balance');
+      setMessageType('error');
     } finally {
       setSettling(prev => ({ ...prev, [key]: false }));
     }
@@ -108,6 +127,16 @@ const Balances = () => {
           </Box>
         </Box>
       </Paper>
+
+      {message && (
+        <Alert 
+          severity={messageType} 
+          sx={{ mb: 3 }}
+          onClose={() => setMessage('')}
+        >
+          {message}
+        </Alert>
+      )}
 
       <Card elevation={2}>
         <CardContent>
@@ -173,16 +202,25 @@ const Balances = () => {
                             </Typography>
                           </TableCell>
                           <TableCell align="center">
-                            <Button
-                              variant="contained"
-                              color="success"
-                              size="small"
-                              onClick={() => handleSettle(balance.from, balance.to, balance.amount)}
-                              disabled={settling[key]}
-                              startIcon={settling[key] ? <CircularProgress size={16} /> : <CheckIcon />}
-                            >
-                              {settling[key] ? 'Settling...' : 'Settle'}
-                            </Button>
+                            {settledBalances.has(key) ? (
+                              <Chip
+                                label="Settled"
+                                color="success"
+                                variant="filled"
+                                icon={<CheckIcon />}
+                              />
+                            ) : (
+                              <Button
+                                variant="contained"
+                                color="success"
+                                size="small"
+                                onClick={() => handleSettle(balance.from, balance.to, balance.amount)}
+                                disabled={settling[key]}
+                                startIcon={settling[key] ? <CircularProgress size={16} /> : <CheckIcon />}
+                              >
+                                {settling[key] ? 'Settling...' : 'Settle'}
+                              </Button>
+                            )}
                           </TableCell>
                         </TableRow>
                       );
