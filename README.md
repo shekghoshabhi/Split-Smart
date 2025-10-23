@@ -1,409 +1,351 @@
-# Expense Splitting App
+# Split Smart
 
-A full-stack application for splitting expenses among groups of users, built with Node.js backend and React frontend. This app allows users to create groups, add expenses, track balances, and settle debts efficiently.
+**Live App**: [https://smart-split-ai.netlify.app](https://smart-split-ai.netlify.app)  
+**Demo Video**: [Watch the app in action](https://www.loom.com/share/46069ccfc2f744a284f80125f8b5f089?sid=64313ea9-0c28-4061-bc13-5ed88d09ff99)  
+**API**: [https://split-smart-production.up.railway.app](https://split-smart-production.up.railway.app)
 
-## 🚀 Features
+A modern expense splitting app that makes splitting bills with friends effortless. Built with Node.js and React, featuring AI-powered insights to help you understand your spending patterns.
 
-- **User Management**: Create and manage users with unique email validation
-- **Group Management**: Create groups and add multiple members
-- **Expense Tracking**: Add expenses with different split types (equal, percentage, exact amounts)
-- **Balance Calculation**: Real-time balance tracking between users
-- **Settlement**: Settle balances with transaction tracking
-- **AI Integration**: Automatic expense categorization and optimal settlement suggestions
-- **Responsive UI**: Clean and intuitive user interface
+## What Makes This Special
 
-## 🏗️ Project Structure
+Ever been on a group trip where everyone's constantly asking "who owes what?" This app solves that problem completely. You can:
 
-```
-expense-split-app/
-├── backend/                    # Node.js Express API
-│   ├── models/                # MongoDB models
-│   │   ├── User.js
-│   │   ├── Group.js
-│   │   ├── Expense.js
-│   │   └── Settlement.js
-│   ├── routes/                # API routes
-│   │   ├── users.js
-│   │   └── groups.js
-│   ├── services/              # Business logic services
-│   │   └── aiService.js       # AI integration service
-│   ├── package.json
-│   └── server.js
-├── frontend/                  # React frontend
-│   ├── src/
-│   │   ├── components/        # Reusable components
-│   │   ├── pages/            # Page components
-│   │   ├── App.js
-│   │   └── index.js
-│   ├── public/
-│   └── package.json
-└── README.md
-```
+- Create groups for trips, dinners, or any shared expenses
+- Add expenses with flexible splitting options (equal, percentage, or custom amounts)
+- See exactly who owes whom at a glance
+- Settle balances with one click
+- Get AI-powered insights like "Who spent the most?" or "What was our biggest expense category?"
 
-## 🛠️ Tech Stack
+The AI features are pretty cool - it automatically categorizes your expenses and can answer natural language questions about your spending.
 
-### Backend
-- **Node.js** with Express framework
-- **MongoDB** with Mongoose ODM
-- **Express Validator** for input validation
-- **Axios** for HTTP requests
-- **OpenAI API** for AI-powered features
+## Tech Stack
 
-### Frontend
-- **React.js** with functional components and hooks
-- **React Router** for navigation
-- **Axios** for API communication
-- **CSS3** for styling and responsive design
+**Backend**: Node.js + Express + MongoDB + OpenAI API  
+**Frontend**: React + Material-UI  
+**Database**: MongoDB Atlas  
+**Deployment**: Railway (backend) + Netlify (frontend)
 
-## 📚 API Documentation
-
-### Base URL
-```
-http://localhost:5000/api
-```
-
-### Users API
-
-#### Create User
-```http
-POST /api/users
-Content-Type: application/json
-
-{
-  "name": "John Doe",
-  "email": "john@example.com"
-}
-```
-
-**Response:**
-```json
-{
-  "userId": "u1",
-  "name": "John Doe",
-  "email": "john@example.com"
-}
-```
-
-#### Get All Users
-```http
-GET /api/users
-```
-
-### Groups API
-
-#### Create Group
-```http
-POST /api/groups
-Content-Type: application/json
-
-{
-  "name": "Trip to Goa",
-  "members": ["u1", "u2", "u3"]
-}
-```
-
-**Response:**
-```json
-{
-  "groupId": "g1",
-  "name": "Trip to Goa"
-}
-```
-
-#### Add Expense to Group
-```http
-POST /api/groups/:groupId/expenses
-Content-Type: application/json
-
-{
-  "paidBy": "u1",
-  "amount": 1200.00,
-  "description": "Hotel",
-  "splitBetween": ["u1", "u2", "u3"],
-  "splitType": "equal"
-}
-```
-
-**Response:**
-```json
-{
-  "expenseId": "e1",
-  "status": "success"
-}
-```
-
-#### Get Group Balances
-```http
-GET /api/groups/:groupId/balances
-```
-
-**Response:**
-```json
-{
-  "balances": [
-    {
-      "from": "u2",
-      "to": "u1",
-      "amount": 400.0000
-    },
-    {
-      "from": "u3",
-      "to": "u1",
-      "amount": 400.0000
-    }
-  ]
-}
-```
-
-#### Settle Balance
-```http
-POST /api/groups/:groupId/settle
-Content-Type: application/json
-
-{
-  "from": "u2",
-  "to": "u1",
-  "amount": 400.00
-}
-```
-
-**Response:**
-```json
-{
-  "status": "settled",
-  "txnId": "txn123"
-}
-```
-
-#### Get Group Details
-```http
-GET /api/groups/:groupId
-```
-
-#### Get AI Settlement Suggestions
-```http
-GET /api/groups/:groupId/settlement-suggestions
-```
-
-**Response:**
-```json
-{
-  "suggestions": [
-    {
-      "from": "u2",
-      "to": "u1",
-      "amount": 400.0000
-    }
-  ],
-  "originalTransactions": 2,
-  "optimizedTransactions": 1,
-  "savings": 1
-}
-```
-
-## 🚀 Getting Started
+## Quick Start
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- MongoDB (local or cloud instance)
-- npm or yarn
+- Node.js 14+ installed
+- MongoDB Atlas account (free tier works fine)
+- OpenAI API key (optional but recommended for AI features)
 
-### Backend Setup
+### Installation
 
-1. **Navigate to backend directory:**
+1. **Clone the repo**
 ```bash
-cd backend
+git clone https://github.com/shekghoshabhi/Split-Smart.git
+cd Split-Smart
 ```
 
-2. **Install dependencies:**
+2. **Set up the backend**
 ```bash
+cd backend
 npm install
 ```
 
-3. **Set up environment variables:**
-Create a `.env` file in the backend directory:
+Create a `.env` file in the backend folder:
 ```env
+MONGODB_URI=mongodb+srv://your-username:your-password@cluster.mongodb.net/split-smart
+OPENAI_API_KEY=your-openai-api-key-here
 PORT=5000
-MONGODB_URI=mongodb://localhost:27017/expense-split
-JWT_SECRET=your_jwt_secret_key_here
-OPENAI_API_KEY=your_openai_api_key_here
 ```
 
-4. **Start the development server:**
+Start the backend:
 ```bash
 npm run dev
 ```
 
-The backend will be running on `http://localhost:5000`
-
-### Frontend Setup
-
-1. **Navigate to frontend directory:**
+3. **Set up the frontend**
 ```bash
 cd frontend
-```
-
-2. **Install dependencies:**
-```bash
 npm install
 ```
 
-3. **Start the development server:**
+Create a `.env` file in the frontend folder:
+```env
+REACT_APP_API_URL=http://localhost:5000
+```
+
+Start the frontend:
 ```bash
 npm start
 ```
 
-The frontend will be running on `http://localhost:3000`
+4. **Or use the quick start script**
+```bash
+chmod +x start.sh
+./start.sh
+```
 
-## 🤖 AI Integration
+That's it! The app should be running on `http://localhost:3001` (frontend) and `http://localhost:5000` (backend).
+
+## API Documentation
+
+The API is pretty straightforward. Here are the main endpoints:
+
+### Users
+
+**Create a user**
+```bash
+POST /api/users
+{
+  "name": "John Doe",
+  "email": "john@example.com"
+}
+```
+
+**Get all users**
+```bash
+GET /api/users
+```
+
+### Groups
+
+**Create a group**
+```bash
+POST /api/groups
+{
+  "name": "Weekend Trip",
+  "members": ["user1", "user2", "user3"],
+  "createdBy": "user1"
+}
+```
+
+**Get all groups**
+```bash
+GET /api/groups
+```
+
+**Get specific group**
+```bash
+GET /api/groups/{groupId}
+```
+
+### Expenses
+
+**Add an expense**
+```bash
+POST /api/groups/{groupId}/expenses
+{
+  "paidBy": "user1",
+  "amount": 1200.00,
+  "description": "Hotel booking",
+  "splitBetween": ["user1", "user2", "user3"],
+  "splitType": "equal"
+}
+```
+
+**Update an expense**
+```bash
+PUT /api/groups/{groupId}/expenses/{expenseId}
+{
+  "paidBy": "user1",
+  "amount": 1000.00,
+  "description": "Updated hotel booking",
+  "splitBetween": ["user1", "user2", "user3"],
+  "splitType": "equal"
+}
+```
+
+**Delete an expense**
+```bash
+DELETE /api/groups/{groupId}/expenses/{expenseId}
+```
+
+**Get group expenses**
+```bash
+GET /api/groups/{groupId}/expenses
+```
+
+### Balances
+
+**Get outstanding balances**
+```bash
+GET /api/groups/{groupId}/balances
+```
+
+**Settle a balance**
+```bash
+POST /api/groups/{groupId}/settle
+{
+  "from": "user1",
+  "to": "user2",
+  "amount": 400.00
+}
+```
+
+### AI Features
+
+**Get smart summary**
+```bash
+POST /api/groups/{groupId}/summaries
+{
+  "query": "Who spent the most on food?"
+}
+```
+
+**Get settlement suggestions**
+```bash
+GET /api/groups/{groupId}/settlement-suggestions
+```
+
+## Database Design
+
+I went with MongoDB because it's flexible and works well with Node.js. Here's how the data is structured:
+
+### Users Collection
+```javascript
+{
+  userId: "u1703123456789abc",  // Custom ID for easier frontend handling
+  name: "John Doe",
+  email: "john@example.com",
+  createdAt: "2023-12-21T10:30:00Z"
+}
+```
+
+### Groups Collection
+```javascript
+{
+  groupId: "g1703123456789xyz",  // Custom ID
+  name: "Goa Trip",
+  members: ["u1703123456789abc", "u1703123456789def"],
+  createdBy: "u1703123456789abc",
+  createdAt: "2023-12-21T10:30:00Z"
+}
+```
+
+### Expenses Collection
+```javascript
+{
+  expenseId: "e1703123456789exp",  // Custom ID
+  groupId: "g1703123456789xyz",
+  paidBy: "u1703123456789abc",
+  amount: 1500.00,
+  description: "Dinner at restaurant",
+  splitBetween: ["u1703123456789abc", "u1703123456789def"],
+  splitType: "equal",  // or "percentage" or "exact_amounts"
+  splitDetails: {},  // Contains split configuration
+  category: "Food & Dining",  // AI-generated
+  createdAt: "2023-12-21T10:30:00Z"
+}
+```
+
+### Settlements Collection
+```javascript
+{
+  txnId: "t1703123456789settle",  // Transaction ID
+  groupId: "g1703123456789xyz",
+  from: "u1703123456789abc",
+  to: "u1703123456789def",
+  amount: 750.00,
+  status: "settled",
+  createdAt: "2023-12-21T10:30:00Z"
+}
+```
+
+### Balance Calculation Logic
+
+The balance calculation is the heart of the app. Here's how it works:
+
+1. **Initialize a balance matrix** for all group members
+2. **Process each expense**:
+   - Calculate how much each person owes based on split type
+   - Update the balance matrix accordingly
+3. **Apply settlements**:
+   - Reduce balances where payments have been made
+4. **Extract outstanding balances**:
+   - Only show positive balances (who owes whom)
+
+This approach ensures that settlements are properly accounted for and balances are always accurate.
+
+## AI Integration
+
+The AI features use OpenAI's GPT-3.5-turbo model. Here's what it does:
 
 ### Expense Categorization
-The app automatically categorizes expenses using AI based on the description. Categories include:
-- Food & Dining
-- Travel & Accommodation
-- Entertainment
-- Shopping
-- Transportation
-- Utilities
-- Healthcare
-- Education
-- Other
+When you add an expense like "Dinner at Pizza Hut", the AI automatically categorizes it as "Food & Dining". This helps with spending analysis.
 
-### Settlement Optimization
-AI suggests the minimum number of transactions needed to settle all debts, reducing complexity and transaction fees.
+### Smart Summaries
+You can ask natural language questions like:
+- "Who spent the most overall?"
+- "What was our biggest expense category?"
+- "How much did we spend on food?"
 
-### Implementation Details
-- Uses OpenAI's GPT-3.5-turbo model for intelligent categorization
-- Fallback to rule-based categorization if AI service is unavailable
-- Lightweight integration that doesn't impact performance
-- Cost-effective approach suitable for prototype applications
+The AI analyzes all the expense data and gives you a conversational summary.
 
-## 🎯 Usage Example
+### Fallback System
+If the OpenAI API is down or rate-limited, the app falls back to pre-built responses that still provide useful insights.
 
-### Complete Workflow
+## Project Structure
 
-1. **Create Users:**
-```bash
-# Create John
-curl -X POST http://localhost:5000/api/users \
-  -H "Content-Type: application/json" \
-  -d '{"name": "John", "email": "john@example.com"}'
-
-# Create Alice
-curl -X POST http://localhost:5000/api/users \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Alice", "email": "alice@example.com"}'
-
-# Create Bob
-curl -X POST http://localhost:5000/api/users \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Bob", "email": "bob@example.com"}'
+```
+Split-Smart/
+├── backend/
+│   ├── controllers/     # Handle HTTP requests
+│   ├── services/       # Business logic
+│   ├── routes/         # API endpoints
+│   ├── models/         # Database schemas
+│   ├── middleware/     # Validation, error handling
+│   ├── utils/          # Helper functions
+│   ├── constants/      # App constants
+│   └── server.js       # Main server file
+├── frontend/
+│   ├── src/
+│   │   ├── components/ # Reusable UI components
+│   │   ├── pages/      # Main pages
+│   │   ├── config/     # API configuration
+│   │   └── App.js
+│   └── public/
+└── README.md
 ```
 
-2. **Create Group:**
-```bash
-curl -X POST http://localhost:5000/api/groups \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Goa Trip", "members": ["u1", "u2", "u3"]}'
-```
+## Deployment
 
-3. **Add Expense:**
-```bash
-curl -X POST http://localhost:5000/api/groups/g1/expenses \
-  -H "Content-Type: application/json" \
-  -d '{
-    "paidBy": "u1",
-    "amount": 1200.00,
-    "description": "Hotel",
-    "splitBetween": ["u1", "u2", "u3"],
-    "splitType": "equal"
-  }'
-```
+### Backend (Railway)
+The backend is deployed on Railway, which is great for Node.js apps. It automatically deploys from the main branch and handles environment variables.
 
-4. **Check Balances:**
-```bash
-curl http://localhost:5000/api/groups/g1/balances
-```
+### Frontend (Netlify)
+The frontend is deployed on Netlify with automatic builds from GitHub. The build process installs dependencies and creates an optimized production build.
 
-5. **Settle Balance:**
-```bash
-curl -X POST http://localhost:5000/api/groups/g1/settle \
-  -H "Content-Type: application/json" \
-  -d '{"from": "u2", "to": "u1", "amount": 400.0000}'
-```
+### Environment Variables
+- **Backend**: MongoDB connection string, OpenAI API key
+- **Frontend**: API base URL (currently hardcoded to Railway)
 
-## 🧪 Testing
+## Testing the App
 
-### Manual Testing
-Use the provided frontend interface or API testing tools like Postman to test all endpoints.
+1. **Create a few users** - Add yourself and some friends
+2. **Create a group** - Maybe "Weekend Trip" or "Dinner Group"
+3. **Add some expenses** - Try different split types (equal, percentage, custom)
+4. **Check balances** - See who owes whom
+5. **Settle a balance** - Click settle and watch it disappear
+6. **Try AI features** - Ask questions like "Who spent the most?"
 
-### Test Scenarios
-1. Create users with valid and invalid emails
-2. Create groups with existing and non-existing users
-3. Add expenses with different split types
-4. Verify balance calculations
-5. Test settlement functionality
-6. Test AI categorization with various expense descriptions
+## Known Issues
 
-## 🚀 Deployment
+- The AI features might be rate-limited if you hit the OpenAI API too hard
+- Large groups with many expenses might take a moment to load balances
+- The app works best with groups of 2-10 people (though it supports more)
 
-### Backend Deployment
-1. **Prepare for production:**
-```bash
-cd backend
-npm install --production
-```
+## License
 
-2. **Deploy to your preferred platform:**
-   - Heroku
-   - AWS EC2
-   - DigitalOcean
-   - Railway
-   - Vercel
+MIT License - feel free to use this code for your own projects!
 
-3. **Set environment variables in production**
+## Contributing
 
-### Frontend Deployment
-1. **Build for production:**
-```bash
-cd frontend
-npm run build
-```
+Found a bug or want to add a feature? Contributions are welcome!
 
-2. **Deploy to:**
-   - Netlify
-   - Vercel
-   - AWS S3
-   - GitHub Pages
-
-## 📝 Notes
-
-- All IDs are system-generated using timestamps and random strings
-- Amounts are stored with 4 decimal places precision
-- The app handles race conditions in balance calculations
-- AI integration is lightweight and includes fallback mechanisms
-- The frontend includes responsive design for mobile devices
-
-## 🤝 Contributing
-
-1. Fork the repository
+1. Fork the repo
 2. Create a feature branch
 3. Make your changes
-4. Test thoroughly
+4. Test everything works
 5. Submit a pull request
 
-## 📄 License
+## Support
 
-This project is licensed under the MIT License.
-
-## 👥 Collaborators
-
-- dev-highlevel
-
-## 🔗 Live Demo
-
-[Deployment URL will be added after deployment]
-
-## 📞 Support
-
-For questions or issues, please create an issue in the repository or contact the development team.
+Having issues? 
+- Check the API documentation above
+- Look at the setup instructions
+- Create an issue on GitHub if you're still stuck
