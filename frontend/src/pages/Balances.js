@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import API_BASE_URL from '../config/api';
@@ -33,11 +33,7 @@ const Balances = () => {
   const [loading, setLoading] = useState(true);
   const [settling, setSettling] = useState({});
 
-  useEffect(() => {
-    fetchData();
-  }, [groupId]);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       const [balancesResponse, usersResponse] = await Promise.all([
         axios.get(API_BASE_URL + '/api/groups/' + groupId + '/balances'),
@@ -54,7 +50,11 @@ const Balances = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [groupId]);
+
+  useEffect(() => {
+    fetchData();
+  }, [groupId, fetchData]);
 
   const getUserName = (userId) => {
     if (!userId || !Array.isArray(users)) return userId;

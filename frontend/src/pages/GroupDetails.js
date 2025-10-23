@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import API_BASE_URL from '../config/api';
@@ -59,11 +59,7 @@ const GroupDetails = () => {
   const [showSmartSummaries, setShowSmartSummaries] = useState(false);
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    fetchGroupDetails();
-  }, [groupId]);
-
-  const fetchGroupDetails = async () => {
+  const fetchGroupDetails = useCallback(async () => {
     try {
       const [groupResponse, usersResponse] = await Promise.all([
         axios.get(API_BASE_URL + '/api/groups/' + groupId),
@@ -81,7 +77,11 @@ const GroupDetails = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [groupId]);
+
+  useEffect(() => {
+    fetchGroupDetails();
+  }, [groupId, fetchGroupDetails]);
 
   const getUserName = (userId) => {
     if (!userId || !Array.isArray(users)) return userId;
