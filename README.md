@@ -1,3 +1,5 @@
+https://smart-split-ai.netlify.app
+
 # Expense Splitting App
 
 A full-stack application for splitting expenses among groups of users, built with Node.js backend and React frontend. This app allows users to create groups, add expenses, track balances, and settle debts efficiently.
@@ -345,61 +347,11 @@ Use the provided frontend interface or API testing tools like Postman to test al
 5. Test settlement functionality
 6. Test AI categorization with various expense descriptions
 
-## 🚀 Deployment
 
-### Backend Deployment
-1. **Prepare for production:**
-```bash
-cd backend
-npm install --production
-```
 
-2. **Deploy to your preferred platform:**
-   - Heroku
-   - AWS EC2
-   - DigitalOcean
-   - Railway
-   - Vercel
-
-3. **Set environment variables in production**
-
-### Frontend Deployment
-1. **Build for production:**
-```bash
-cd frontend
-npm run build
-```
-
-2. **Deploy to:**
-   - Netlify
-   - Vercel
-   - AWS S3
-   - GitHub Pages
-
-## 📝 Notes
-
-- All IDs are system-generated using timestamps and random strings
-- Amounts are stored with 4 decimal places precision
-- The app handles race conditions in balance calculations
-- AI integration is lightweight and includes fallback mechanisms
-- The frontend includes responsive design for mobile devices
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 👥 Collaborators
-
-- dev-highlevel
 
 ## 🔗 Live Demo
 
-https://smart-split-ai.netlify.app
+https://www.loom.com/share/46069ccfc2f744a284f80125f8b5f089?sid=64313ea9-0c28-4061-bc13-5ed88d09ff99
+
+
