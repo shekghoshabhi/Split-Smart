@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 import {
-import API_BASE_URL from "../config/api";  Container,
   Paper,
   Typography,
   TextField,
@@ -72,7 +72,7 @@ const CreateGroup = () => {
     setMessageType('');
 
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/groups', formData);
+      const response = await axios.post(`${API_BASE_URL}/api/groups`, formData);
       setMessage(`Group created successfully! Group ID: ${response.data.data?.groupId || response.data.groupId}`);
       setMessageType('success');
       setFormData({ name: '', members: [] });

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import API_BASE_URL from "../config/api";import {
+import API_BASE_URL from '../config/api';
+import {
   Container,
   Typography,
   Card,
@@ -39,7 +40,7 @@ const Balances = () => {
   const fetchData = async () => {
     try {
       const [balancesResponse, usersResponse] = await Promise.all([
-        axios.get(`/api/groups/${groupId}/balances`),
+        axios.get(`${API_BASE_URL}/api/groups/${groupId}/balances`),
         axios.get(`${API_BASE_URL}/api/users')
       ]);
       
@@ -66,7 +67,7 @@ const Balances = () => {
     setSettling(prev => ({ ...prev, [key]: true }));
 
     try {
-      await axios.post(`/api/groups/${groupId}/settle`, {
+      await axios.post(`${API_BASE_URL}/api/groups/${groupId}/settle`, {
         from,
         to,
         amount

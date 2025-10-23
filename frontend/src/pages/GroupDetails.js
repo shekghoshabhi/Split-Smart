@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import API_BASE_URL from "../config/api";import AddExpenseModal from '../components/AddExpenseModal';
+import API_BASE_URL from '../config/api';
+import AddExpenseModal from '../components/AddExpenseModal';
 import EditExpenseModal from '../components/EditExpenseModal';
 import SmartSummaries from '../components/SmartSummaries';
 import {
@@ -65,7 +66,7 @@ const GroupDetails = () => {
   const fetchGroupDetails = async () => {
     try {
       const [groupResponse, usersResponse] = await Promise.all([
-        axios.get(`/api/groups/${groupId}`),
+        axios.get(`${API_BASE_URL}/api/groups/${groupId}`),
         axios.get(`${API_BASE_URL}/api/users')
       ]);
       
@@ -113,7 +114,7 @@ const GroupDetails = () => {
     if (!deletingExpense) return;
 
     try {
-      await axios.delete(`/api/groups/${groupId}/expenses/${deletingExpense.expenseId}`);
+      await axios.delete(`${API_BASE_URL}/api/groups/${groupId}/expenses/${deletingExpense.expenseId}`);
       fetchGroupDetails();
       setShowDeleteDialog(false);
       setDeletingExpense(null);
