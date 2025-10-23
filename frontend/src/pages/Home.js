@@ -137,7 +137,11 @@ const Home = () => {
 
   const handleCreateGroup = async (groupData) => {
     try {
-      await axios.post(API_BASE_URL + '/api/groups', groupData);
+      const groupDataWithCreator = {
+        ...groupData,
+        createdBy: groupData.members[0] || 'unknown'
+      };
+      await axios.post(API_BASE_URL + '/api/groups', groupDataWithCreator);
       showSnackbar(`Group "${groupData.name}" created successfully!`);
       setShowCreateGroup(false);
       setParticipants([]);

@@ -73,7 +73,11 @@ const CreateGroup = () => {
     setMessageType('');
 
     try {
-      const response = await axios.post(API_BASE_URL + '/api/groups', formData);
+      const groupData = {
+        ...formData,
+        createdBy: formData.members[0] || 'unknown'
+      };
+      const response = await axios.post(API_BASE_URL + '/api/groups', groupData);
       setMessage(`Group created successfully! Group ID: ${response.data.data?.groupId || response.data.groupId}`);
       setMessageType('success');
       setFormData({ name: '', members: [] });
