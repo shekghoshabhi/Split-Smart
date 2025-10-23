@@ -1,0 +1,32 @@
+{
+  "name": "expense-split-app",
+  "version": "1.0.0",
+  "description": "Full-stack Expense Splitting App with AI integration",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "dev": "cd backend && npm run dev",
+    "install-backend": "cd backend && npm install",
+    "install-frontend": "cd frontend && npm install",
+    "install-all": "npm run install-backend && npm run install-frontend",
+    "build": "cd frontend && npm run build"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shekghoshabhi/Split-Smart.git"
+  },
+  "keywords": [
+    "expense-splitting",
+    "nodejs",
+    "react",
+    "mongodb",
+    "ai",
+    "openai"
+  ],
+  "author": "shekghoshabhi",
+  "license": "MIT"
+}
