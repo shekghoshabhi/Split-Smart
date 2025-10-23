@@ -1,4 +1,4 @@
-# Ignore everything except backend
+# Railway ignore file - only affects Railway deployment
 frontend/
 start.sh
 README.md
@@ -6,6 +6,8 @@ AI_INTEGRATION.md
 DEPLOYMENT.md
 .gitignore
 package.json
+vercel.json
+build-frontend.sh
 
-# Only deploy backend
+# Only deploy backend to Railway
 !backend/
