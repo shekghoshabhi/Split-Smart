@@ -402,8 +402,4 @@ This project is licensed under the MIT License.
 
 ## 🔗 Live Demo
 
-[Deployment URL will be added after deployment]
-
-## 📞 Support
-
-For questions or issues, please create an issue in the repository or contact the development team.
+https://smart-split-ai.netlify.app
