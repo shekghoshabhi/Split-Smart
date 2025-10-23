@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
-import AddExpenseModal from '../components/AddExpenseModal';
+import API_BASE_URL from "../config/api";import AddExpenseModal from '../components/AddExpenseModal';
 import EditExpenseModal from '../components/EditExpenseModal';
 import SmartSummaries from '../components/SmartSummaries';
 import {
@@ -66,7 +66,7 @@ const GroupDetails = () => {
     try {
       const [groupResponse, usersResponse] = await Promise.all([
         axios.get(`/api/groups/${groupId}`),
-        axios.get('/api/users')
+        axios.get(`${API_BASE_URL}/api/users')
       ]);
       
       const group = groupResponse.data.data || groupResponse.data;

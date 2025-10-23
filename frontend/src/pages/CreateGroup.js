@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
-  Container,
+import API_BASE_URL from "../config/api";  Container,
   Paper,
   Typography,
   TextField,
@@ -35,7 +35,7 @@ const CreateGroup = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('/api/users');
+      const response = await axios.get(`${API_BASE_URL}/api/users');
       const users = response.data.data || response.data || [];
       setUsers(Array.isArray(users) ? users : []);
     } catch (error) {
@@ -72,7 +72,7 @@ const CreateGroup = () => {
     setMessageType('');
 
     try {
-      const response = await axios.post('/api/groups', formData);
+      const response = await axios.post(`${API_BASE_URL}/api/groups', formData);
       setMessage(`Group created successfully! Group ID: ${response.data.data?.groupId || response.data.groupId}`);
       setMessageType('success');
       setFormData({ name: '', members: [] });

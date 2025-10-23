@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import {
+import API_BASE_URL from "../config/api";import {
   Container,
   Typography,
   Card,
@@ -40,7 +40,7 @@ const Balances = () => {
     try {
       const [balancesResponse, usersResponse] = await Promise.all([
         axios.get(`/api/groups/${groupId}/balances`),
-        axios.get('/api/users')
+        axios.get(`${API_BASE_URL}/api/users')
       ]);
       
       const balances = balancesResponse.data.data?.balances || balancesResponse.data.balances || [];
