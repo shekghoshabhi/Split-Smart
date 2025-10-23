@@ -1,0 +1,13 @@
+# Netlify ignore file - optimize frontend deployment
+backend/
+start.sh
+README.md
+AI_INTEGRATION.md
+DEPLOYMENT.md
+.gitignore
+package.json
+.railwayignore
+Dockerfile
+
+# Only deploy frontend to Netlify
+!frontend/

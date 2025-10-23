@@ -6,8 +6,7 @@ AI_INTEGRATION.md
 DEPLOYMENT.md
 .gitignore
 package.json
-vercel.json
-build-frontend.sh
+netlify.toml
 
 # Only deploy backend to Railway
 !backend/
