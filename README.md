@@ -27,6 +27,12 @@ In short, this app is proof that:
 Notes - Even this Desciption is made using ChatGpt
 
 
+⚠️ Disclaimer
+
+Vibe-coding without understanding the code is like making a smoothie with random ingredients — it might taste amazing, or you might accidentally invent rocket fuel.
+So yeah, don’t try this in production 😄
+
+
 # Split Smart
 
 **Live App**: [https://smart-split-ai.netlify.app](https://smart-split-ai.netlify.app)  
