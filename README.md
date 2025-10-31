@@ -1,12 +1,38 @@
+⚡ About This Project
+
+This project was created as a fun weekend experiment — a spontaneous vibe-coding session that turned into a complete, functional expense-splitting app. The entire thing — backend, frontend, AI integration, and deployment — was built in roughly 3 hours just to see how far modern AI-assisted development tools can go when paired with a bit of flow-state coding energy.
+
+Instead of following a formal plan, the project evolved organically using Cursor, ChatGPT, and a few other AI-powered developer tools. The idea was simple:
+
+“Can I go from zero to a live, polished app in a few hours — powered by AI collaboration?”
+
+The result is Split Smart, a surprisingly robust mini-app with:
+
+A full Node.js + Express backend with MongoDB
+
+A clean React + Material-UI frontend
+
+Integrated OpenAI APIs for AI-powered insights
+
+Fully deployed stack — Railway for backend and Netlify for frontend
+
+End-to-end functionality: user management, expense tracking, balance settlement, and AI summaries
+
+It’s not meant to be a production-level product — it’s a showcase of rapid prototyping, AI-assisted creativity, and the new speed at which developers can build when they combine coding skills with the latest AI tools.
+
+In short, this app is proof that:
+
+“A few hours, an idea, and some good AI tools are all you need to ship something cool.”
+
+Notes - Even this Desciption is made using ChatGpt
+
+
 # Split Smart
 
 **Live App**: [https://smart-split-ai.netlify.app](https://smart-split-ai.netlify.app)  
 **API**: [https://split-smart-production.up.railway.app](https://split-smart-production.up.railway.app)
 
 
-**Demo Video**:
-
-https://www.loom.com/share/46069ccfc2f744a284f80125f8b5f089?sid=64313ea9-0c28-4061-bc13-5ed88d09ff99
 
 A modern expense splitting app that makes splitting bills with friends effortless. Built with Node.js and React, featuring AI-powered insights to help you understand your spending patterns.
 
